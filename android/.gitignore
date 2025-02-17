@@ -1,0 +1,21 @@
+# Android/Gradle specific files
+.gradle/
+build/
+captures/
+.gradle-wrapper.jar
+gradlew
+gradlew.bat
+/local.properties
+GeneratedPluginRegistrant.java
+
+# KeyStore files (don't commit your keys!)
+key.properties
+**/*.keystore
+**/*.jks
+
+# Android Studio and IntelliJ project files
+.idea/
+*.iml
+
+# Logs and generated files
+*.log

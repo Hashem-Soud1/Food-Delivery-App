@@ -54,7 +54,9 @@ List<FoodItem> food = [
     size: 'Medium',
     cookingTime: 15,
     calories: '500 kcal',
-    description: 'A juicy beef patty grilled to perfection, topped with fresh vegetables and melted cheese. A classic choice for burger lovers.',
+    description: 'A juicy beef patty grilled to perfection, '
+        'A juicy beef patty grilled to perfection, topped with fresh vegetables and melted cheese. A classic choice for burger lovers.A juicy beef patty grilled to perfection, topped with fresh vegetables and melted cheese. A classic choice for burger lovers.topped with fresh vegetables and melted cheese. A classic choice for burger lovers.'
+        ,
     category: 'Burger - Beef',
   ),
   FoodItem(

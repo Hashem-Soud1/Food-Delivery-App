@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Foodak - Food Delivery',
       theme: ThemeData(
         primaryColor: Colors.green,
+        primarySwatch: Colors.green,
         scaffoldBackgroundColor: Colors.grey[100],
 
         appBarTheme:  AppBarTheme(

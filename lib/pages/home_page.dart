@@ -8,9 +8,14 @@ import 'package:food_delivery_app/models/food_item.dart';
 import 'package:food_delivery_app/pages/food_details_page.dart';
 import 'package:food_delivery_app/widgets/food_grid_item.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -50,7 +55,9 @@ class HomePage extends StatelessWidget {
                         foodIndex: index,
                       ),
                     ),
-                  );
+                  ).then((value) => setState(() {
+
+                  }),);
                 },
                 child: FoodGridItem(
                   foodIndex: index,

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/models/food_item.dart';
+import 'package:food_delivery_app/widgets/custom_back_button.dart';
+import 'package:food_delivery_app/widgets/favorite_button.dart';
 import 'package:food_delivery_app/widgets/food_details/food_item_counter.dart';
 import 'package:food_delivery_app/widgets/food_details/property_item.dart';
-import 'package:food_delivery_app/widgets/food_details/top_banner.dart';
 
 class FoodDetailsPage extends StatelessWidget {
   final int foodIndex;
@@ -115,6 +116,7 @@ class FoodDetailsPage extends StatelessWidget {
                         .headlineMedium!
                         .copyWith(
                       color: Theme.of(context).primaryColor,
+
                       fontWeight: FontWeight.bold,
                     ),
                   ),

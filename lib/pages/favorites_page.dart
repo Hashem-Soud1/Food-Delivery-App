@@ -54,7 +54,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => FoodDetailsPage(foodItem: favoriteFood[index],),
+                builder: (context) => FoodDetailsPage(foodIndex: index,),
               ),
             );
           },

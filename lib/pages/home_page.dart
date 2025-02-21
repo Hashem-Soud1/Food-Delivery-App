@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => FoodDetailsPage(
-                        foodItem: food[index],
+                        foodIndex: index,
                       ),
                     ),
                   );

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/models/food_item.dart';
+import 'package:food_delivery_app/widgets/custom_back_button.dart';
+import 'package:food_delivery_app/widgets/favorite_button.dart';
 import 'package:food_delivery_app/widgets/food_details/food_item_counter.dart';
 import 'package:food_delivery_app/widgets/food_details/property_item.dart';
-
-import '../widgets/food_details/top_banner.dart';
 
 class FoodDetailsPage extends StatelessWidget {
   final int foodIndex;
@@ -15,25 +15,62 @@ class FoodDetailsPage extends StatelessWidget {
 
     return Scaffold(
       // appBar: AppBar(),
-      body:
-      Column(
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TopBanner(foodIndex: foodIndex),
-                  Padding(
+      body: SafeArea(
+        top: false,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CustomScrollView(
+                slivers: [
+                  SliverAppBar(
+                    leading: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CustomBackButton(
+                        width: size.width * 0.09,
+                        height: size.height * 0.04,
+                      ),
+                    ),
+                    actions: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: FavoriteButton(
+                          foodIndex: foodIndex,
+                          width: size.width * 0.1,
+                          height: size.height * 0.04,
+                        ),
+                      ),
+                    ],
+                    expandedHeight: size.height * 0.35,
+                    pinned: true,
+                    flexibleSpace: FlexibleSpaceBar(
+                      background: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 24.0),
+                          child: Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Image.network(
+                              food[foodIndex].imgUrl,
+                              fit: BoxFit.contain,
+                              height: size.height * 0.28,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SliverPadding(
                     padding: const EdgeInsets.only(
                       left: 16.0,
                       right: 16.0,
                       top: 16.0,
                       bottom: 46.0,
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                    sliver: SliverList(
+                      delegate: SliverChildListDelegate([
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -96,63 +133,57 @@ class FoodDetailsPage extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        const SizedBox(height: 32.0),
-
-                      ],
+                        SizedBox(height: 400,)
+                      ]),
                     ),
                   ),
                 ],
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Row(
-              children: [
-                Text(
-                  '\$ ${food[foodIndex].price}',
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineMedium!
-                      .copyWith(
-                    color: Theme.of(context).primaryColor,
-
-                    fontWeight: FontWeight.bold,
+            Padding(
+              padding: const EdgeInsets.all(14),
+              child: Row(
+                children: [
+                  Text(
+                    '\$ ${food[foodIndex].price}',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineMedium!
+                        .copyWith(
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                ),
-                const SizedBox(width: 46.0),
-                Expanded(
+                  const SizedBox(width: 46.0),
+                  Expanded(
 
-                  child: SizedBox(
-                    height: size.height * 0.058,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Theme.of(context).primaryColor,
+                    child: SizedBox(
+                      height: size.height * 0.058,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Theme.of(context).primaryColor,
 
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
                         ),
-                      ),
-                      onPressed: () {},
-                      child:Text(
-                        'Checkout',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.0,
+                        onPressed: () {},
+                        child:Text(
+                          'Checkout',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-
-        ],
+          ],
+        ),
       ),
-
-
-
     );
   }
 }

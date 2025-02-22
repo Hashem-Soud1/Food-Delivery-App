@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/models/food_item.dart';
 import 'package:food_delivery_app/pages/food_details_page.dart';
+import 'package:food_delivery_app/ui_models/food_details_args.dart';
 import 'package:food_delivery_app/widgets/adaptive_fav_button.dart';
 
 class FavoritesPage extends StatefulWidget {
@@ -52,13 +53,10 @@ class _FavoritesPageState extends State<FavoritesPage> {
         itemCount: favoriteFood.length,
         itemBuilder: (context, index) => InkWell(
           onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  var targetedIndex=food.indexOf(favoriteFood[index]);
-                  return FoodDetailsPage(foodIndex: targetedIndex,);
-                },
-              ),
+            Navigator.of(context).pushNamed(
+              FoodDetailsPage.routeName,
+              arguments: FoodDetailsArgs(foodIndex: index),
+             
             ).then((value) {
               setState(() {});
             });
@@ -125,7 +123,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                       ),
                     if (isLandscape)
                       AdaptiveFavButton(
-                        title: 'Favorited',
+                        title: 'Favorites',
                         onPressed: () {
                           final targetedItem = favoriteFood[index];
                           int targetedIndex = food.indexOf(targetedItem);

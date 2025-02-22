@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/models/food_item.dart';
+import 'package:food_delivery_app/ui_models/food_details_args.dart';
 import 'package:food_delivery_app/widgets/custom_back_button.dart';
 import 'package:food_delivery_app/widgets/favorite_button.dart';
 import 'package:food_delivery_app/widgets/food_details/food_item_counter.dart';
 import 'package:food_delivery_app/widgets/food_details/property_item.dart';
 
 class FoodDetailsPage extends StatelessWidget {
-  final int foodIndex;
-  const FoodDetailsPage({super.key, required this.foodIndex});
+  const FoodDetailsPage({super.key});
+
+  static const String routeName = '/food-details';
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final FoodDetailsArgs foodArgs =
+        ModalRoute.of(context)!.settings.arguments as FoodDetailsArgs;
+    final foodIndex = foodArgs.foodIndex;
 
     return Scaffold(
       // appBar: AppBar(),
@@ -83,16 +88,18 @@ class FoodDetailsPage extends StatelessWidget {
                                       .textTheme
                                       .headlineSmall!
                                       .copyWith(
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                 ),
                                 const SizedBox(height: 6.0),
                                 Text(
                                   '${food[foodIndex].category} ',
-                                  style:
-                                  Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                    color: Colors.grey,
-                                  ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .copyWith(
+                                        color: Colors.grey,
+                                      ),
                                 ),
                               ],
                             ),
@@ -105,35 +112,40 @@ class FoodDetailsPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               PropertyItem(
-                                  propertyName: 'Size', propertyValue: food[foodIndex].size),
+                                  propertyName: 'Size',
+                                  propertyValue: food[foodIndex].size),
                               const VerticalDivider(
                                 indent: 0,
                                 endIndent: 0,
                               ),
                               PropertyItem(
                                   propertyName: 'Calories',
-                                  propertyValue: food[foodIndex].calories.toString()
-                              ),
+                                  propertyValue:
+                                      food[foodIndex].calories.toString()),
                               const VerticalDivider(
                                 indent: 0,
                                 endIndent: 0,
                               ),
                               PropertyItem(
                                   propertyName: 'Cooking',
-                                  propertyValue: food[foodIndex].cookingTime.toString()),
+                                  propertyValue:
+                                      food[foodIndex].cookingTime.toString()),
                             ],
                           ),
                         ),
                         const SizedBox(height: 16.0),
                         Text(
                           '${food[foodIndex].description} ',
-                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Colors.grey[500],
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w600,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    color: Colors.grey[500],
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                         ),
-                        SizedBox(height: 400,)
+                        SizedBox(
+                          height: 400,
+                        )
                       ]),
                     ),
                   ),
@@ -146,29 +158,24 @@ class FoodDetailsPage extends StatelessWidget {
                 children: [
                   Text(
                     '\$ ${food[foodIndex].price}',
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineMedium!
-                        .copyWith(
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                          color: Theme.of(context).primaryColor,
+                          fontWeight: FontWeight.w600,
+                        ),
                   ),
                   const SizedBox(width: 46.0),
                   Expanded(
-
                     child: SizedBox(
                       height: size.height * 0.058,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Theme.of(context).primaryColor,
-
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                         ),
                         onPressed: () {},
-                        child:Text(
+                        child: Text(
                           'Checkout',
                           style: TextStyle(
                             color: Colors.white,

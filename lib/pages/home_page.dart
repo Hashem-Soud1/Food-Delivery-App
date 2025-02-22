@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 // Internal (Files)
 import 'package:food_delivery_app/models/food_item.dart';
 import 'package:food_delivery_app/pages/food_details_page.dart';
+import 'package:food_delivery_app/ui_models/food_details_args.dart';
 import 'package:food_delivery_app/widgets/food_grid_item.dart';
 
 class HomePage extends StatefulWidget {
@@ -49,12 +50,9 @@ class _HomePageState extends State<HomePage> {
               ),
               itemBuilder: (context, index) => InkWell(
                 onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => FoodDetailsPage(
-                        foodIndex: index,
-                      ),
-                    ),
+                  Navigator.of(context).pushNamed(
+                    FoodDetailsPage.routeName,
+                    arguments:FoodDetailsArgs(foodIndex: index),
                   ).then((value) => setState(() {
 
                   }),);
